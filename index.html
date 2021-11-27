@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <title>Trove of Tomes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Trove of Tomes</h1>
+    <div id="bookList">
+        <div class="book">
+            <p class="bookTitle">Add Book</p>
+            <button id="addButton">+</button>
+        </div>
+    </div>
+
+    <div id="inputModal">
+        
+        <form class="inputForm">
+            <span class="close">&times;</span>
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title"><br>
+            <label for="author">Author:</label><br>
+            <input type="text" id="author" name="author"><br>
+            <label for="pages">Pages:</label><br>
+            <input type="number" id="pages" name="pages"><br>
+            <label for="hasRead">Already read: </label>
+            <input type="checkbox" id="hasRead" name="hasRead"><br>
+            <button type ="button" id="submitButton">Submit</button>
+          </form> 
+          
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
