@@ -35,6 +35,7 @@ window.onclick = function(event) {
     }
 }
 
+// Constructor for book objects
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -48,6 +49,14 @@ function Book(title, author, pages, read) {
             (info += 'has not been read.');
         }
         return info;
+    }
+}
+
+Book.prototype.readToggle = function () {
+    if (this.read) {
+        this.read = false;
+    } else {
+        this.read = true;
     }
 }
 
@@ -96,10 +105,23 @@ function makeBook(book) {
     button.classList.toggle('deleteButton');
     button.textContent = 'X';
 
-    // We need something special for the read attribute
+    // Give the checkbox it's own div so we can label it
+    let readDiv = document.createElement('div');
+    readDiv.textContent = 'Read:';
+
+    let checkbox = document.createElement('input');
+    checkbox.type=('checkbox');
+    checkbox.classList.toggle('readBox');
+    if (book.read) {
+        checkbox.checked = true;
+    }
+
+    readDiv.appendChild(checkbox);
+
     // Append elements to the book div
     div.appendChild(title);
     div.appendChild(author);
+    div.appendChild(readDiv);
     div.appendChild(pages);
     div.appendChild(button);
 
@@ -125,6 +147,16 @@ function updateBooks() {
                 e.stopImmediatePropagation();
                 deleteBook(deleteList[i].parentNode.dataset.indexNumber);
                 
+            });
+        }
+    }
+    let readList = document.querySelectorAll('.readBox');
+    if (readList !== undefined) {
+        for (let i = 0; i < readList.length; i++) {
+            readList[i].addEventListener('change', function (e) {
+                e.stopImmediatePropagation();
+                myLibrary[i].readToggle();
+                console.log('changed');
             });
         }
     }
